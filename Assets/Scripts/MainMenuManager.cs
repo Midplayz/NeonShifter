@@ -10,12 +10,13 @@ public class MainMenuManager : MonoBehaviour
     public float verticalRange = 0.5f;
     public float verticalChangeSpeed = 2f;
 
+    private float baseY;
     private float targetY;
     private float verticalLerpTime = 0f;
 
     [Header("Camera Follow")]
     public Transform cam;
-    public Vector3 camOffset = new Vector3(-10, 2, 0); 
+    public Vector3 camOffset = new Vector3(-10, 2, 0);
     public float camSmoothTime = 0.2f;
     private Vector3 camVelocity = Vector3.zero;
 
@@ -31,7 +32,8 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        targetY = spaceship.position.y;
+        baseY = spaceship.position.y;
+        targetY = baseY;
 
         if (cam == null && Camera.main != null)
             cam = Camera.main.transform;
@@ -51,7 +53,7 @@ public class MainMenuManager : MonoBehaviour
         if (verticalLerpTime >= 1f)
         {
             verticalLerpTime = 0f;
-            targetY = spaceship.position.y + Random.Range(-verticalRange, verticalRange);
+            targetY = baseY + Random.Range(-verticalRange, verticalRange);
         }
         pos.y = Mathf.Lerp(pos.y, targetY, Time.deltaTime * verticalChangeSpeed);
         spaceship.position = pos;

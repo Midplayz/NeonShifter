@@ -169,6 +169,7 @@ public class PlayerController : MonoBehaviour
                 else if (platform.colorIndex != currentColorIndex)
                 {
                     Debug.Log("Game Over: Wrong color!");
+                    ScoreManager.Instance?.GameOver();
                     enabled = false;
                 }
                 else
