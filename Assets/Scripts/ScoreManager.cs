@@ -35,5 +35,6 @@ public class ScoreManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
+        GameOverController.Instance.ShowGameOverScreen(score);
     }
 }
