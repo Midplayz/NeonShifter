@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public Material[] colors; // 0=Red, 1=Green, 2=Blue
     private Renderer rend;
     private int currentColorIndex = 0;
+    [SerializeField] private ColorSelectorUI colorSelectorUI;
+    public int GetCurrentColorIndex() => currentColorIndex;
 
     [Header("Camera Follow")]
     public Transform cam;
@@ -134,6 +136,10 @@ public class PlayerController : MonoBehaviour
                 {
                     mats[bodyMaterialIndex] = colors[index];
                     modelRenderer.materials = mats;
+                    if (colorSelectorUI != null)
+                    {
+                        colorSelectorUI.UpdateColorUI(currentColorIndex);
+                    }
                 }
             }
         }
